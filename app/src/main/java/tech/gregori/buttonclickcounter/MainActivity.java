@@ -3,6 +3,7 @@ package tech.gregori.buttonclickcounter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,14 +25,21 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);  // getelementbyid
         button = findViewById(R.id.button);
         textView = findViewById(R.id.textView);
+        // limpa o conteúdo do textview
+        textView.setText("");
+        // permite fazer um "scroll" no text view
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
         // cria um objeto do tipo evento para "escutar cliques" (onClickListener)
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 numTimesClicked++;
-                String result = "\nO botão foi pressionado " + numTimesClicked + " vezes.";
-
+                String result = "O botão foi pressionado " + numTimesClicked + " vez";
+                if (numTimesClicked > 1) {
+                    result += "es";
+                }
+                result += "\n";
                 textView.append(result);
             }
         };
