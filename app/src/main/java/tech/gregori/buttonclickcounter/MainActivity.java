@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Atrela (faz bind) o componente no xml com a variável declarada na classe
         editText = findViewById(R.id.editText);  // getelementbyid
+        editText.setText(""); // limpa o campo texto
         button = findViewById(R.id.button);
         textView = findViewById(R.id.textView);
         // limpa o conteúdo do textview
@@ -34,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numTimesClicked++;
-                String result = "O botão foi pressionado " + numTimesClicked + " vez";
-                if (numTimesClicked > 1) {
-                    result += "es";
+                String result = editText.getText().toString();
+                if (!result.equals("")) { // se o campo estiver preenchido
+                    result += "\n";
+                    textView.append(result);
+                    editText.setText("");  // depois de inserir o texto, limpa o input
                 }
-                result += "\n";
-                textView.append(result);
+
             }
         };
 
